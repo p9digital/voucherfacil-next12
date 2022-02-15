@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "scope": "voucherfacil",
+  "redirects" : [
+    { "source": "/clube-nerd/oferta-milk-shake", "destination": "/oferta/clube-nerd/oferta-milk-shake", "statusCode": 301 },
+    { "source": "/emagresee/harmonizacao-facial-day", "destination": "/oferta/emagresee/harmonizacao-facial-day", "statusCode": 301 },
+    { "source": "/lentrecote-de-paris/oferta-especial", "destination": "/oferta/lentrecote-de-paris/oferta-especial", "statusCode": 301 },
+    { "source": "/lentrecote-de-paris/combo-especial", "destination": "/oferta/lentrecote-de-paris/combo-especial", "statusCode": 301 },
+    { "source": "/temakeria-e-cia/desafio-do-sushiman-sp", "destination": "/oferta/temakeria-e-cia/desafio-do-sushiman-sp", "statusCode": 301 },
+    { "source": "/temakeria-e-cia/desafio-do-sushiman-rj", "destination": "/oferta/temakeria-e-cia/desafio-do-sushiman-rj", "statusCode": 301 },
+    { "source": "/temakeria-e-cia/desafio-do-sushiman-es", "destination": "/oferta/temakeria-e-cia/desafio-do-sushiman-es", "statusCode": 301 },
+    { "source": "/el-tambo/rodizio-mexicano", "destination": "/oferta/el-tambo/rodizio-mexicano", "statusCode": 301 },
+    { "source": "/afs", "destination": "/oferta/armazem-fit-store/dia-do-consumidor", "statusCode": 301 }
+  ]
+}
