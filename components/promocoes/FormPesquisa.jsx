@@ -4,8 +4,10 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { SingleDatePicker } from 'react-dates';
+import 'react-dates/initialize';
 
-import { celularMask, cpfMask } from '../../helpers/masks';
+import { celularMask, cnpjMask, cpfMask, dataMask } from '../../helpers/masks';
 
 import {
   Form, BotaoSubmit, Campos, FormWrapperStyled, Topo,
@@ -20,7 +22,6 @@ import Icon from '../ui/Icon';
 import { StatusWrapper, ErroStatus } from '../formulario/Status';
 import { validaCpf, validaTelefone } from '../../helpers/formulario';
 
-import 'react-dates/initialize';
 import { TextAreaStyled } from '../formulario/InputsStyles';
 
 moment.locale('pt-br');
@@ -48,6 +49,7 @@ export default function FormPesquisa({
   valido,
   voucher
 }) {
+  const [focus, setFocus] = useState(0);
   const [listaEstados, setListaEstados] = useState([]);
 
   useEffect(() => {
@@ -56,7 +58,7 @@ export default function FormPesquisa({
     });
     setListaEstados(lista);
   }, []);
-
+  
   return (
     <FormWrapperStyled className="form-promocao-wrapper">
       {erro && !enviando && (
@@ -178,11 +180,76 @@ export default function FormPesquisa({
                       <label>{pergunta.pergunta}</label>
 
                       <InputPesquisa
-                        name={pergunta.pergunta}
+                        name={pergunta.id}
+                        label={pergunta.pergunta}
                         value={respostas[pergunta.id - 1]}
-                        onChange={setRespostas}
+                        handleChange={setRespostas}
                         placeholder={pergunta.pergunta}
+                        type={pergunta.tipo}
+                        valido={!(!valido && !respostas[pergunta.id - 1])}
+                        icone=""
+                        required={pergunta.required}
                       />
+                    </Campo>
+                  );
+                } else if (pergunta.tipo == "cnpj") {
+                  campo = (
+                    <Campo key={pergunta.id}>
+                      <label>{pergunta.pergunta}</label>
+
+                      <InputMaskedPesquisa
+                        name={pergunta.id}
+                        label={pergunta.pergunta}
+                        placeholder={pergunta.pergunta}
+                        handleChange={setRespostas}
+                        value={respostas[pergunta.id - 1]}
+                        type="text"
+                        icone=""
+                        mask={cnpjMask}
+                        valido={!(!valido)}
+                      />
+                    </Campo>
+                  );
+                } else if (pergunta.tipo == "date") {
+                  campo = (
+                    <Campo key={pergunta.id}>
+                      <label>{pergunta.pergunta}</label>
+
+                      <InputMaskedPesquisa
+                        name={pergunta.id}
+                        label={pergunta.pergunta}
+                        placeholder={pergunta.pergunta}
+                        handleChange={setRespostas}
+                        value={respostas[pergunta.id - 1]}
+                        type="text"
+                        icone=""
+                        mask={dataMask}
+                        valido={!(!valido)}
+                      />
+                    </Campo>
+                  );
+                } else if (pergunta.tipo == "datepicker") {
+                  campo = (
+                    <Campo key={pergunta.id}>
+                      <label>{pergunta.pergunta}</label>
+
+                      <DatePickerWrapper
+                        valido={!(!valido && !respostas[pergunta.id - 1])}
+                      >
+                        <SingleDatePicker
+                          date={respostas[pergunta.id - 1]}
+                          onDateChange={(date) => setRespostasRadio(pergunta.id, date)}
+                          focused={focus == pergunta.id}
+                          onFocusChange={({ focused }) => setFocus(focused ? pergunta.id : 0)}
+                          id={`${pergunta.id}`}
+                          isOutsideRange={() => false}
+                          numberOfMonths={1}
+                          minDate={moment("1950-01-01")}
+                          block
+                          placeholder={pergunta.pergunta}
+                          hideKeyboardShortcutsPanel
+                        />
+                      </DatePickerWrapper>
                     </Campo>
                   );
                 } else if (pergunta.tipo == "radio") {
@@ -210,6 +277,23 @@ export default function FormPesquisa({
                       </RangeItems>
                     </Campo>
                   );
+                } else if (pergunta.tipo == "select") {
+                  campo = (
+                    <Campo key={pergunta.id}>
+                      <SelectPesquisa
+                        name={`${pergunta.id}`}
+                        label={pergunta.pergunta}
+                        placeholder={pergunta.pergunta}
+                        handleChange={setRespostas}
+                        value={respostas[pergunta.id - 1]}
+                        type="text"
+                        options={pergunta.valores}
+                        valido={!(!valido && !respostas[pergunta.id - 1])}
+                        required={pergunta.required}
+                        simpleValue
+                      />
+                    </Campo>
+                  );
                 } else if (pergunta.tipo == "textarea") {
                   campo = (
                     <Campo key={pergunta.id}>
@@ -220,6 +304,7 @@ export default function FormPesquisa({
                         name={pergunta.id}
                         value={respostas[pergunta.id - 1]}
                         onChange={setRespostas}
+                        required={pergunta.required}
                       />
                     </Campo>
                   );
@@ -321,6 +406,51 @@ const PesquisaTextArea = styled(TextAreaStyled)`
 
   &:focus {
     box-shadow:1px 1px 20px rgba(0,0,0,0.2);
+  }
+`;
+
+const DatePickerWrapper = styled.div`
+  .SingleDatePickerInput__withBorder {
+    border: none;
+  }
+
+  .DateInput_input {
+    border-bottom: ${(props) => (props.valido ? '1px solid #333333' : '1px solid #E86262')};
+    flex: 1;
+    font-size: 16px;
+    font-weight: normal;
+    min-height: 4rem;
+    outline: none;
+    width: 100%;
+  }
+  
+  .CalendarDay__default {
+    background-color:rgba(113, 217, 70, 0.2);
+  }
+  .CalendarDay__default:hover {
+    background-color: #71d946;
+    border: 1px solid #e4e7e7;
+    color: #fff;
+  }
+  .CalendarDay__blocked_out_of_range {
+    background-color: #FFFFFF;
+  }
+  .CalendarDay__selected {
+    background-color: #71d946;
+    border: 1px solid #e4e7e7;
+    color: #fff;
+  }
+
+  .CalendarDay__blocked_out_of_range:hover {
+    background: #fff;
+    border: 1px solid #e4e7e7;
+    color: #cacccd;
+  }
+
+  .CalendarDay__blocked_calendar, .CalendarDay__blocked_calendar:active, .CalendarDay__blocked_calendar:hover {
+    background: #fff;
+    border: 1px solid #e4e7e7;
+    color: #cacccd;
   }
 `;
 
