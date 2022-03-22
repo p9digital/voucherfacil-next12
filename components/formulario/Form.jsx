@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import devices from '../../styles/devices';
-import { IconeWrapperParaBotao } from '../ui/Icon';
-import { animacaoGira, animacaoBounce } from '../../styles/efeitos';
+// import { IconeWrapperParaBotao } from '../ui/Icon';
+// import { animacaoGira, animacaoBounce } from '../../styles/efeitos';
 
 export const Form = styled.form`
   background: ${(props) => (props.light ? props.theme.lessLighterGrey : props.theme.cores.quatro)};

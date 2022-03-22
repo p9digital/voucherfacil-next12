@@ -15,5 +15,9 @@ export default function ContatoOferta({ telefone }) {
 }
 
 ContatoOferta.propTypes = {
-  telefone: PropTypes.string,
+  telefone: PropTypes.string
+};
+
+ContatoOferta.defaultProps = {
+  telefone: ""
 };

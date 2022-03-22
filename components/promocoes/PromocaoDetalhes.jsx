@@ -89,7 +89,6 @@ function Detalhes({
 Detalhes.propTypes = {
   pessoas: PropTypes.string,
   periodo: PropTypes.string,
-  numero_pessoas: PropTypes.number,
   agendamento: PropTypes.string,
   regras: PropTypes.string,
 };
@@ -97,7 +96,6 @@ Detalhes.propTypes = {
 Detalhes.defaultProps = {
   pessoas: '',
   periodo: '',
-  numero_pessoas: null,
   regras: '',
   agendamento: '',
 };

@@ -6,7 +6,6 @@ import devices from '../../styles/devices';
 
 import { ArchorUnderline } from '../ui/Anchor';
 
-
 const BreadcrumbsStyled = styled.div`
   display: flex;
   align-items: center;

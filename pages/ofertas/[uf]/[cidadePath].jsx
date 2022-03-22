@@ -102,7 +102,6 @@ CidadeOferta.propTypes = {
   }).isRequired,
 };
 
-
 CidadeOferta.getInitialProps = async ({ query }) => {
   const {
     promocoes,

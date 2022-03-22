@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable consistent-return */
 import styled from 'styled-components';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -64,7 +63,6 @@ export default function ContatoSucesso() {
 
     getLocalStorage();
   }, ['umavez']);
-
 
   return (
     <Container>

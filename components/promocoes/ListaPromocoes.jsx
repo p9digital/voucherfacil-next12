@@ -62,11 +62,10 @@ const ListaPromocoes = ({ promocoes, forcarVertical }) => {
     <ListaWrapper vertical={vertical}>
       <ListaPromocoesStyled vertical={vertical}>
         {promocoes.length ? promocoes.map((promocao) => (
-            <CardWrapper key={promocao.id} vertical={vertical}>
-              <CardPromocao promocao={promocao} cidade={{ nome: 'cidade top' }} as="li" />
-            </CardWrapper>
-          ))
-          : null}
+          <CardWrapper key={promocao.id} vertical={vertical}>
+            <CardPromocao promocao={promocao} cidade={{ nome: 'cidade top' }} as="li" />
+          </CardWrapper>
+        )) : null}
       </ListaPromocoesStyled>
     </ListaWrapper>
   );

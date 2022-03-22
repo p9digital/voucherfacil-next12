@@ -27,17 +27,17 @@ export default function OndeOferta({
 }) {
   return (
     <>
-    {
-      endereco && cidade && numero && bairro && uf && (
-        <OndeOfertaWrapper>
-          <Titulo1>Onde?</Titulo1>
-          <p>{`${endereco && endereco} - ${numero && numero}, ${bairro && bairro}${complemento ? ', ' + complemento : ''}`}</p>
-          <p>{`${cidade && cidade}/${uf && uf}`}</p>
-          <OndeBtnMaps className="btn btn-success" href={`https://maps.google.com/maps/search/${endereco && endereco} - ${numero}, ${bairro}, ${cidade}/${uf}`} target="_blank">Ver no Google maps</OndeBtnMaps>
-          <br /><br />
-        </OndeOfertaWrapper>
-      )
-    }
+      {
+        endereco && cidade && numero && bairro && uf && (
+          <OndeOfertaWrapper>
+            <Titulo1>Onde?</Titulo1>
+            <p>{`${endereco && endereco} - ${numero && numero}, ${bairro && bairro}${complemento ? `, ${complemento}` : ''}`}</p>
+            <p>{`${cidade && cidade}/${uf && uf}`}</p>
+            <OndeBtnMaps className="btn btn-success" href={`https://maps.google.com/maps/search/${endereco && endereco} - ${numero}, ${bairro}, ${cidade}/${uf}`} target="_blank">Ver no Google maps</OndeBtnMaps>
+            <br /><br />
+          </OndeOfertaWrapper>
+        )
+      }
     </>
   );
 }
@@ -49,4 +49,13 @@ OndeOferta.propTypes = {
   numero: PropTypes.string,
   bairro: PropTypes.string,
   complemento: PropTypes.string
+};
+
+OndeOferta.defaultProps = {
+  cidade: "",
+  uf: "",
+  endereco: "",
+  numero: "",
+  bairro: "",
+  complemento: ""
 };

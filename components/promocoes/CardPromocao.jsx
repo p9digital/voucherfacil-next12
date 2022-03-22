@@ -1,6 +1,5 @@
-/* eslint-disable camelcase */
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import Link from 'next/link';
 
 import { promocaoType } from '../../types';
@@ -89,9 +88,7 @@ const CardPromocao = ({
               {valor_atual != null && (
               <PrecoAtual>
                 {
-                  valor_atual === 0 ?
-                  "Grátis" :
-                  ("R$" + centavosParaReais(valor_atual))
+                  valor_atual === 0 ? "Grátis" : (`R$${centavosParaReais(valor_atual)}`)
                 }
               </PrecoAtual>
               )}

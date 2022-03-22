@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/forbid-prop-types */
 import styled from 'styled-components';
 import QRCode from 'qrcode.react';
 import PropTypes from 'prop-types';
@@ -91,9 +93,16 @@ TopoOfertaSucesso.propTypes = {
   voucher: PropTypes.string,
   dia: PropTypes.string,
   periodo: PropTypes.string,
-  // eslint-disable-next-line react/forbid-prop-types
   promocao: PropTypes.object,
   unidade: PropTypes.object,
+};
+
+TopoOfertaSucesso.defaultProps = {
+  voucher: "",
+  dia: "",
+  periodo: "",
+  promocao: {},
+  unidade: {}
 };
 
 export default TopoOfertaSucesso;

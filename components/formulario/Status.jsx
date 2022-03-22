@@ -1,3 +1,5 @@
+/* eslint-disable react/forbid-prop-types */
+import PropTypes from "prop-types";
 import styled from 'styled-components';
 
 export const StatusWrapperStyles = styled.div`
@@ -73,3 +75,13 @@ export function ErroStatus({ children, color }) {
     </ErroStatusWrapper>
   );
 }
+
+ErroStatus.propTypes = {
+  children: PropTypes.any,
+  color: PropTypes.string
+};
+
+ErroStatus.defaultProps = {
+  children: <></>,
+  color: "#000000"
+};

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import styled, { keyframes } from 'styled-components';
 
 const rotate = keyframes`
@@ -46,5 +47,13 @@ const Loader = ({ color }) => (
     <div />
   </CirculoLoading>
 );
+
+Loader.propTypes = {
+  color: PropTypes.string
+};
+
+Loader.defaultProps = {
+  color: "#000000"
+};
 
 export default Loader;

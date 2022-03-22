@@ -65,7 +65,6 @@ export default function DivulgueSucesso() {
     getLocalStorage();
   }, ['umavez']);
 
-
   return (
     <Container>
       <PaginaDivulgue>
