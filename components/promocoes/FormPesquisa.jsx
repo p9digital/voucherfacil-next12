@@ -177,7 +177,7 @@ export default function FormPesquisa({
                 if (pergunta.tipo == "text") {
                   campo = (
                     <Campo key={pergunta.id}>
-                      <label>{pergunta.pergunta}</label>
+                      {/* <label>{pergunta.pergunta}</label> */}
 
                       <InputPesquisa
                         name={pergunta.id}
@@ -195,7 +195,7 @@ export default function FormPesquisa({
                 } else if (pergunta.tipo == "cnpj") {
                   campo = (
                     <Campo key={pergunta.id}>
-                      <label>{pergunta.pergunta}</label>
+                      {/* <label>{pergunta.pergunta}</label> */}
 
                       <InputMaskedPesquisa
                         name={pergunta.id}
@@ -213,7 +213,7 @@ export default function FormPesquisa({
                 } else if (pergunta.tipo == "date") {
                   campo = (
                     <Campo key={pergunta.id}>
-                      <label>{pergunta.pergunta}</label>
+                      {/* <label>{pergunta.pergunta}</label> */}
 
                       <InputMaskedPesquisa
                         name={pergunta.id}
@@ -231,7 +231,7 @@ export default function FormPesquisa({
                 } else if (pergunta.tipo == "datepicker") {
                   campo = (
                     <Campo key={pergunta.id}>
-                      <label>{pergunta.pergunta}</label>
+                      {/* <label>{pergunta.pergunta}</label> */}
 
                       <DatePickerWrapper
                         valido={!(!valido && !respostas[pergunta.id - 1])}
@@ -254,7 +254,7 @@ export default function FormPesquisa({
                   );
                 } else if (pergunta.tipo == "radio") {
                   campo = (
-                    <Campo key={pergunta.id}>
+                    <CampoRadio key={pergunta.id}>
                       <label>{pergunta.pergunta}</label>
 
                       <RangeItems>
@@ -275,7 +275,7 @@ export default function FormPesquisa({
                           </RangeItem>
                         ))}
                       </RangeItems>
-                    </Campo>
+                    </CampoRadio>
                   );
                 } else if (pergunta.tipo == "select") {
                   campo = (
@@ -347,6 +347,9 @@ const Campo = styled.div`
   display:flex;
   flex-direction:column;
   justify-content:space-between;
+`;
+
+const CampoRadio = styled(Campo)`
   margin:10px 0;
 `;
 
