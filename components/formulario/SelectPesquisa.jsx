@@ -19,7 +19,8 @@ export default function SelectPesquisa({
   tiny,
   groups,
   groupsFiltrado,
-  icone
+  icone,
+  required
 }) {
   return (
     <>
@@ -96,6 +97,7 @@ export default function SelectPesquisa({
             tiny={tiny}
             disabled={options.length < 1}
             icone={icone}
+            required={required}
           >
             <option>{placeholder}</option>
             {options.map((item, i) => (
@@ -146,6 +148,7 @@ SelectPesquisa.propTypes = {
   tiny: PropTypes.bool,
   groups: PropTypes.arrayOf(PropTypes.object),
   groupsFiltrado: PropTypes.bool,
+  required: PropTypes.bool
 };
 
 SelectPesquisa.defaultProps = {
@@ -155,4 +158,5 @@ SelectPesquisa.defaultProps = {
   tiny: false,
   groups: [],
   groupsFiltrado: false,
+  required: false
 };
