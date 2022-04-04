@@ -207,7 +207,6 @@ export default function FormPesquisa({
                         icone=""
                         mask={cnpjMask}
                         valido={!(!valido)}
-                        required={pergunta.required}
                       />
                     </Campo>
                   );
@@ -226,7 +225,6 @@ export default function FormPesquisa({
                         icone=""
                         mask={dataMask}
                         valido={!(!valido)}
-                        required={pergunta.required}
                       />
                     </Campo>
                   );
