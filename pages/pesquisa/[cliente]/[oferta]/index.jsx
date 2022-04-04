@@ -141,7 +141,7 @@ function Pesquisa({
     const validou = validacaoPesquisa(voucher);
     const validouTelefone = validaTelefone(voucher.celular);
     
-    if (!validou || !validouTelefone || emailExcedido || celularExcedido) {
+    if (!validou || !validouTelefone || emailExcedido || celularExcedido || pesquisas.length != respostas.length) {
       setFormController({
         ...formController,
         valido: false,
