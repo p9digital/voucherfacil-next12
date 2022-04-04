@@ -178,6 +178,7 @@ function Pesquisa({
       cpf: voucher.cpf,
       telefone: voucher.celular,
       data_voucher: moment().format('YYYY-MM-DD'),
+      // data_voucher: moment().format('YYYY-MM-DD').add(20, 'days'),
       horario_voucher: periodo.nome,
       periodo_id: periodo.id,
       pessoas: 1,
