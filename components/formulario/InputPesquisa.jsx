@@ -5,7 +5,7 @@ import { InputStyledPesquisa } from './InputsStyles';
 import Icon from '../ui/Icon';
 
 export default function InputPesquisa({
-  name, label, placeholder, handleChange, value, type, valido, icone
+  name, label, placeholder, handleChange, value, type, valido, icone, required
 }) {
   return (
     <CampoWrapper>
@@ -23,6 +23,7 @@ export default function InputPesquisa({
         placeholder={placeholder}
         valido={valido}
         icone={icone}
+        required={required}
       />
     </CampoWrapper>
   );
@@ -46,9 +47,11 @@ InputPesquisa.propTypes = {
   value: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   valido: PropTypes.bool.isRequired,
-  icone: PropTypes.string
+  icone: PropTypes.string,
+  required: PropTypes.bool
 };
 
 InputPesquisa.defaultProps = {
-  icone: ""
+  icone: "",
+  required: false
 };

@@ -8,7 +8,7 @@ import { InputStyledPesquisa } from './InputsStyles';
 import Icon from '../ui/Icon';
 
 export default function CampoInputMasked({
-  name, label, placeholder, handleChange, value, type, mask, valido, icone
+  name, label, placeholder, handleChange, value, type, mask, valido, icone, required
 }) {
   return (
     <CampoWrapper>
@@ -29,6 +29,7 @@ export default function CampoInputMasked({
         guide={false}
         valido={valido}
         icone={icone}
+        required={required}
       />
     </CampoWrapper>
   );
@@ -54,9 +55,11 @@ CampoInputMasked.propTypes = {
   type: PropTypes.string.isRequired,
   mask: PropTypes.any.isRequired,
   valido: PropTypes.bool.isRequired,
-  icone: PropTypes.string
+  icone: PropTypes.string,
+  required: PropTypes.bool
 };
 
 CampoInputMasked.defaultProps = {
-  icone: ""
+  icone: "",
+  required: false
 };
