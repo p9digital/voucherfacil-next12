@@ -49,7 +49,7 @@ export const InputStyledPesquisa = styled.input`
   margin: 0.5rem 0;
   min-height: ${(props) => (props.size ? props.size : '4rem')};
   outline: none;
-  padding: ${(props) => (props.icone ? '10px 15px 10px 30px' : '10px 15px')};
+  padding: ${(props) => (props.icone ? '10px 15px 10px 30px' : '10px 0')};
   width:100%;
 `;
 
@@ -80,7 +80,7 @@ export const SelectStyledPesquisa = styled.select`
   margin: 0.5rem 0;
   min-height: 4rem;
   outline: none;
-  padding: ${(props) => (props.icone ? '10px 15px 10px 30px' : '10px 15px')};
+  padding: ${(props) => (props.icone ? '10px 15px 10px 30px' : '10px 0')};
   width: 100%;
 `;
 

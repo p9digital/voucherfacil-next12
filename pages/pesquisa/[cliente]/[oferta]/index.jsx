@@ -399,11 +399,6 @@ function Pesquisa({
       <Topo {...promocao} />
       <ContainerPesquisa maxWidth="1100px">
         <div className="conteudo-oferta__1">
-          <div>
-            <Titulo1>Pesquisa de Satisfação</Titulo1>
-            {/* <p>Lorem ipsum dolor sit amet consectetur adipiscing elit</p> */}
-          </div><br />
-
           {
             !(!temVouchers || (moment().format('YYYY-MM-DD HH:mm:SS') > promocaoInitial.dataFim))
               ? (

@@ -10,7 +10,7 @@ import 'react-dates/initialize';
 import { celularMask, cnpjMask, cpfMask, dataMask } from '../../helpers/masks';
 
 import {
-  Form, BotaoSubmit, Campos, FormWrapperStyled, Topo,
+  Form, BotaoSubmit, Campos, FormWrapperStyled
 } from '../formulario/Form';
 
 import InputPesquisa from '../formulario/InputPesquisa';
@@ -88,9 +88,9 @@ export default function FormPesquisa({
 
       {!erro && !enviando && (
         <PesquisaForm onSubmit={handleSubmit}>
-          <PesquisaTopo>
+          {/* <PesquisaTopo>
             Responda nossa pesquisa de satisfação e receba <strong>gratuitamente</strong> seu Voucher Fácil
-          </PesquisaTopo>
+          </PesquisaTopo> */}
           <PesquisaCampos>
             {
               listaEstados.length > 1 ? (
@@ -180,9 +180,9 @@ export default function FormPesquisa({
                       {/* <label>{pergunta.pergunta}</label> */}
 
                       <InputPesquisa
-                        name={pergunta.id}
+                        name={`${pergunta.id}`}
                         label={pergunta.pergunta}
-                        value={respostas[pergunta.id - 1]}
+                        value={respostas[pergunta.id - 1] ? respostas[pergunta.id - 1] : ""}
                         handleChange={setRespostas}
                         placeholder={pergunta.pergunta}
                         type={pergunta.tipo}
@@ -198,11 +198,11 @@ export default function FormPesquisa({
                       {/* <label>{pergunta.pergunta}</label> */}
 
                       <InputMaskedPesquisa
-                        name={pergunta.id}
+                        name={`${pergunta.id}`}
                         label={pergunta.pergunta}
                         placeholder={pergunta.pergunta}
                         handleChange={setRespostas}
-                        value={respostas[pergunta.id - 1]}
+                        value={respostas[pergunta.id - 1] ? respostas[pergunta.id - 1] : ""}
                         type="text"
                         icone=""
                         mask={cnpjMask}
@@ -216,11 +216,11 @@ export default function FormPesquisa({
                       {/* <label>{pergunta.pergunta}</label> */}
 
                       <InputMaskedPesquisa
-                        name={pergunta.id}
+                        name={`${pergunta.id}`}
                         label={pergunta.pergunta}
                         placeholder={pergunta.pergunta}
                         handleChange={setRespostas}
-                        value={respostas[pergunta.id - 1]}
+                        value={respostas[pergunta.id - 1] ? respostas[pergunta.id - 1] : ""}
                         type="text"
                         icone=""
                         mask={dataMask}
@@ -279,13 +279,13 @@ export default function FormPesquisa({
                   );
                 } else if (pergunta.tipo == "select") {
                   campo = (
-                    <Campo key={pergunta.id}>
+                    <Campo key={pergunta.id} className={pergunta.classes}>
                       <SelectPesquisa
                         name={`${pergunta.id}`}
                         label={pergunta.pergunta}
                         placeholder={pergunta.pergunta}
                         handleChange={setRespostas}
-                        value={respostas[pergunta.id - 1]}
+                        value={respostas[pergunta.id - 1] ? respostas[pergunta.id - 1] : ""}
                         type="text"
                         options={pergunta.valores}
                         valido={!(!valido && !respostas[pergunta.id - 1])}
@@ -335,9 +335,9 @@ const PesquisaForm = styled(Form)`
   padding:0;
 `;
 
-const PesquisaTopo = styled(Topo)`
-  color:#333333;
-`;
+// const PesquisaTopo = styled(Topo)`
+//   color:#333333;
+// `;
 
 const PesquisaCampos = styled(Campos)`
   padding:0;
@@ -347,6 +347,10 @@ const Campo = styled.div`
   display:flex;
   flex-direction:column;
   justify-content:space-between;
+
+  &.mb-40 {
+    margin-bottom:40px;
+  }
 `;
 
 const CampoRadio = styled(Campo)`
@@ -356,6 +360,7 @@ const CampoRadio = styled(Campo)`
 const RangeItems = styled.div`
   display:flex;
   justify-content:space-between;
+  gap:1rem;
 `;
 
 const RangeItem = styled.label`
@@ -397,6 +402,13 @@ const RangeItem = styled.label`
   &.item5 {
     background-color:#57BC45;
   }
+
+  @media (max-width:600px) {
+    font-size:16px;
+    height:45px;
+    justify-content:center;
+    padding:10px 30px;
+  }
 `;
 
 const PesquisaTextArea = styled(TextAreaStyled)`
@@ -404,12 +416,9 @@ const PesquisaTextArea = styled(TextAreaStyled)`
   border:0;
   border-bottom:1px solid #333333;
   border-radius:0;
+  padding:10px 0;
   transition:all ease 0.5s;
   width:100%;
-
-  &:focus {
-    box-shadow:1px 1px 20px rgba(0,0,0,0.2);
-  }
 `;
 
 const DatePickerWrapper = styled.div`

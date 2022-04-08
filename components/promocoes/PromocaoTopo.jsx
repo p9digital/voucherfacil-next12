@@ -1,8 +1,7 @@
-/* eslint-disable camelcase */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { removeTags } from '../../helpers/strings';
+// import { removeTags } from '../../helpers/strings';
 import { centavosParaReais } from '../../helpers/valores';
 import {
   DestaqueCirculo,
@@ -59,7 +58,7 @@ const Topo = ({
   valor_de,
   titulo,
   descricao,
-  resumo,
+  // resumo,
   promocao_atualizada: atualizado,
   cliente,
 }) => (
@@ -114,7 +113,10 @@ const Topo = ({
       <Titulo1 grande as="h1">
         {titulo}
       </Titulo1>
-      <Descricao>{removeTags(descricao || resumo)}</Descricao>
+      {/* <Descricao>{removeTags(descricao || resumo)}</Descricao> */}
+      <Descricao
+        dangerouslySetInnerHTML={{ __html: descricao }}
+      />
     </TitleContainer>
   </TopoStyled>
 );
@@ -127,7 +129,7 @@ Topo.propTypes = {
   valor_atual: PropTypes.number,
   valor_de: PropTypes.number,
   descricao: PropTypes.string,
-  resumo: PropTypes.string,
+  // resumo: PropTypes.string,
   promocao_atualizada: PropTypes.bool,
   cliente: PropTypes.shape({
     nomeFantasia: PropTypes.string.isRequired,
@@ -140,7 +142,7 @@ Topo.defaultProps = {
   valor_atual: 0,
   valor_de: 0,
   descricao: '',
-  resumo: '',
+  // resumo: '',
   promocao_atualizada: false,
 };
 

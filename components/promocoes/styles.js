@@ -88,7 +88,7 @@ export const CidadeNome = styled.span`
   color: ${(props) => props.theme.cores.dois};
 `;
 
-export const Descricao = styled.p`
+export const Descricao = styled.div`
   margin-top: 0.5rem;
   line-height: 1.4;
   font-size: 1.5rem;

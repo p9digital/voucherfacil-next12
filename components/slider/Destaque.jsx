@@ -73,36 +73,14 @@ const Destaque = ({
   return (
     <DestaqueWrapper>
       <picture>
-        {/* mob_xxs */}
-        <source
-          media="(max-width: 370px)"
-          type="image/webp"
-          srcSet={`${fotos.mob_xxs}.webp`}
-        />
-        <source
-          media="(max-width: 370px)"
-          srcSet={`${fotos.mob_xxs}.png`}
-        />
-
-        {/* mob_xs */}
-        <source
-          media="(max-width: 425px)"
-          type="image/webp"
-          srcSet={`${fotos.mob_xs}.webp`}
-        />
-        <source
-          media="(max-width: 425px)"
-          srcSet={`${fotos.mob_xs}.png`}
-        />
-
         {/* fotos.mob */}
         <source
-          media="(max-width: 700px)"
+          media="(max-width: 750px)"
           type="image/webp"
           srcSet={`${fotos.mob}.webp`}
         />
         <source
-          media="(max-width: 700px)"
+          media="(max-width: 750px)"
           srcSet={`${fotos.mob}.png`}
         />
 

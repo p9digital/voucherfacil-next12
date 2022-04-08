@@ -28,7 +28,7 @@ const Icon = ({
 Icon.propTypes = {
   tamanho: PropTypes.string,
   cor: PropTypes.string,
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.string,
   className: PropTypes.string,
 };
 
@@ -36,6 +36,7 @@ Icon.defaultProps = {
   tamanho: '6rem',
   cor: '#fff',
   className: '',
+  icon: ''
 };
 
 export default Icon;
