@@ -35,18 +35,18 @@ const IconRegra = styled(Icon)`
   height: 2.8rem;
 `;
 
-const Aviso = styled.div`
-  background-color:#EEEEEE;
-  border-radius:5px;
-  margin-bottom:20px;
-  padding:10px 20px;
-  p {
-    margin:10px 0;
-    strong {
-      color: ${(props) => props.theme.cores.quatro};
-    }
-  }
-`;
+// const Aviso = styled.div`
+//   background-color:#EEEEEE;
+//   border-radius:5px;
+//   margin-bottom:20px;
+//   padding:10px 20px;
+//   p {
+//     margin:10px 0;
+//     strong {
+//       color: ${(props) => props.theme.cores.quatro};
+//     }
+//   }
+// `;
 
 function Detalhes({
   pessoas, periodo, regras, agendamento,
@@ -77,11 +77,11 @@ function Detalhes({
       <RegrasCorpo dangerouslySetInnerHTML={{ __html: regras }} />
       <br />
 
-      <Aviso>
+      {/* <Aviso>
         <p><strong>⚠️ Aviso Importante! ⚠️</strong>: Nossas lojas estão funcionando com o cuidado redobrado e seguindo todas as orientações do Ministério da Saúde contra a Covid-19. Conforme a necessidade, mudanças podem acontecer sem aviso prévio.</p>
         <p>Entre em contato com a loja para confirmar o horário de funcionamento.</p>
         <p>Proteja você e as pessoas ao seu redor: use máscara quando for resgatar o seu Voucher Fácil.</p>
-      </Aviso>
+      </Aviso> */}
     </DetalhesStyled>
   );
 }

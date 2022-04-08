@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import Link from 'next/link';
 import styled from 'styled-components';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/initialize';
@@ -34,6 +33,7 @@ export default function FormPesquisa({
   erro,
   estado,
   estados,
+  handleAgendarOutroDia,
   handleEstado,
   handleInput,
   handleSubmit,
@@ -51,6 +51,8 @@ export default function FormPesquisa({
 }) {
   const [focus, setFocus] = useState(0);
   const [listaEstados, setListaEstados] = useState([]);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [tooltipImagem, setTooltipImagem] = useState("");
 
   useEffect(() => {
     const lista = estados.map((est) => {
@@ -58,21 +60,26 @@ export default function FormPesquisa({
     });
     setListaEstados(lista);
   }, []);
-  
+
+  function handleShowTooltip(imagem) {
+    setShowTooltip(true);
+    setTooltipImagem(imagem);
+  }
+
   return (
     <FormWrapperStyled className="form-promocao-wrapper">
       {erro && !enviando && (
         <StatusWrapper>
-          <ErroStatus>
+          <ErroStatus color="#FFFFFF">
             <Icon
               tamanho="5rem"
               cor="#fff"
               icon="error"
             />
             <p>{!repetido ? 'Ocorreu um erro inesperado!' : 'Voucher já gerado!'}</p>
-            <Link href="/">
+            <button type="button" onClick={handleAgendarOutroDia}>
               <i>{!repetido ? 'Clique aqui e tente novamente.' : 'Agende outro dia.'}</i>
-            </Link>
+            </button>
           </ErroStatus>
         </StatusWrapper>
       )}
@@ -176,21 +183,24 @@ export default function FormPesquisa({
                 let campo = "";
                 if (pergunta.tipo == "text") {
                   campo = (
-                    <Campo key={pergunta.id}>
-                      {/* <label>{pergunta.pergunta}</label> */}
+                    <>
+                      <Campo key={pergunta.id}>
+                        {/* <label>{pergunta.pergunta}</label> */}
 
-                      <InputPesquisa
-                        name={`${pergunta.id}`}
-                        label={pergunta.pergunta}
-                        value={respostas[pergunta.id - 1] ? respostas[pergunta.id - 1] : ""}
-                        handleChange={setRespostas}
-                        placeholder={pergunta.pergunta}
-                        type={pergunta.tipo}
-                        valido={!(!valido && !respostas[pergunta.id - 1])}
-                        icone=""
-                        required={pergunta.required}
-                      />
-                    </Campo>
+                        <InputPesquisa
+                          name={`${pergunta.id}`}
+                          label={pergunta.pergunta}
+                          value={respostas[pergunta.id - 1] ? respostas[pergunta.id - 1] : ""}
+                          handleChange={setRespostas}
+                          placeholder={pergunta.pergunta}
+                          type={pergunta.tipo}
+                          valido={!(!valido && !respostas[pergunta.id - 1])}
+                          icone=""
+                          required={pergunta.required}
+                        />
+                      </Campo>
+                      {pergunta.tooltip && <TooltipButton type="button" onClick={() => handleShowTooltip(pergunta.tooltip.imagem)}>{pergunta.tooltip.texto}</TooltipButton>}
+                    </>
                   );
                 } else if (pergunta.tipo == "cnpj") {
                   campo = (
@@ -206,7 +216,7 @@ export default function FormPesquisa({
                         type="text"
                         icone=""
                         mask={cnpjMask}
-                        valido={!(!valido)}
+                        valido={!(!valido && !respostas[pergunta.id - 1])}
                       />
                     </Campo>
                   );
@@ -224,7 +234,7 @@ export default function FormPesquisa({
                         type="text"
                         icone=""
                         mask={dataMask}
-                        valido={!(!valido)}
+                        valido={!(!valido && !respostas[pergunta.id - 1])}
                       />
                     </Campo>
                   );
@@ -325,6 +335,13 @@ export default function FormPesquisa({
           </PesquisaCampos>
         </PesquisaForm>
       )}
+      {
+        showTooltip && (
+          <Tooltip onClick={() => setShowTooltip(false)}>
+            <img alt="Tooltip" src={tooltipImagem} />
+          </Tooltip>
+        )
+      }
     </FormWrapperStyled>
   );
 }
@@ -466,7 +483,34 @@ const DatePickerWrapper = styled.div`
   }
 `;
 
+const TooltipButton = styled.button`
+  background-color:#333333;
+  border:0;
+  border-radius:20px;
+  color:#FFFFFF;
+  display:inline-block;
+  float:left;
+  margin:auto;
+  padding:0 10px;
+`;
+
+const Tooltip = styled.div`
+  align-items:center;
+  background-color:rgba(0,0,0,0.5);
+  bottom:0;
+  display:flex;
+  height:100%;
+  justify-content:center;
+  left:0;
+  position:fixed;
+  right:0;
+  top:0;
+  width:100%;
+  z-index:10;
+`;
+
 FormPesquisa.propTypes = {
+  handleAgendarOutroDia: PropTypes.func.isRequired,
   celularExcedido: PropTypes.bool,
   cpfExcedido: PropTypes.bool,
   emailExcedido: PropTypes.bool,

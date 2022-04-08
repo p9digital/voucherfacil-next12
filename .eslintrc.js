@@ -44,6 +44,7 @@ module.exports = {
     'no-trailing-spaces': 0,
     'no-underscore-dangle': 0,
     'object-curly-newline': 0,
+    'object-shorthand': 0,
     'prefer-arrow-callback': 0,
     'quotes': 0,
     'react/jsx-no-bind': 0,

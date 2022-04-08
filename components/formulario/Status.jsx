@@ -53,18 +53,28 @@ export const ErroStatusWrapper = styled.div`
     margin-bottom: 1.5rem;
     text-align: center;
   }
-
   a {
     border-bottom: 2px solid transparent;
     transition: all 0.2s;
+    &:hover{
+      border-bottom: 2px solid ${(props) => (props.color ? props.color : '#fff')};
+    }
   }
+  button {
+    background-color:#ff8c21;
+    border:0;
+    border-radius:5px;
+    padding:5px 25px;
 
-  a:hover{
-    border-bottom: 2px solid ${(props) => (props.color ? props.color : '#fff')};
+    &:hover {
+      background-color:#DD6A00;
+    }
   }
-
   p {
     margin-top: 2.5rem;
+  }
+  i {
+    color: ${(props) => (props.color ? props.color : '#fff')};
   }
 `;
 

@@ -63,14 +63,72 @@ function Pesquisa({
     promocao_atualizada: false,
   });
   const [cpfExcedido, setCpfExcedido] = useState(false);
-  const [emailExcedido, setEmailExcedido] = useState(false);
-  const [celularExcedido, setCelularExcedido] = useState(false);
-  const [timer, setTimer] = useState(null);
+  // const [emailExcedido, setEmailExcedido] = useState(false);
+  // const [celularExcedido, setCelularExcedido] = useState(false);
+  const emailExcedido = false;
+  const celularExcedido = false;
+  // const [timer, setTimer] = useState(null);
   const [limitePorUsuario, setLimitePorUsuario] = useState(false);
-  const [validandoLimite, setValidandoLimite] = useState(false);
+  // const [validandoLimite, setValidandoLimite] = useState(false);
+  const validandoLimite = false;
   const [temVouchers, setTemVouchers] = useState(true);
   const [pesquisas, setPesquisas] = useState([]);
   const [respostas, setThisRespostas] = useState({});
+
+  // async function validaLimiteUsuario(name, value) {
+  //   setValidandoLimite(true);
+  //   if(timer) {
+  //     clearTimeout(timer);
+  //   }
+  //   setTimer(setTimeout(async function() {
+  //     const response = await fetch(`${process.env.API_BASE_URL}/vouchers/verificaLimitePorEmailOuCelular`, {
+  //       method: "POST",
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         campo: 'cpf',
+  //         valor: value,
+  //         promocao_id: promocaoInitial.id
+  //       })
+  //     });
+  //     const data = await response.json();
+  //     if(data) {
+  //       const excedido = data.data >= promocaoInitial.limite_usuario;
+  //       setCpfExcedido(excedido);
+  //       setValidandoLimite(false);
+  //     }
+  //   }, 1500));
+  // }
+
+  async function validaLimiteVoucherPorMes(cpf) {
+    const response = await fetch(`${process.env.API_BASE_URL}/vouchers/verificaLimitePorCPFPesquisa`, {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        cpf: cpf,
+        promocao_id: promocaoInitial.id
+      })
+    });
+    const data = await response.json();
+    console.info(data);
+    if(data) {
+      const excedido = data.data >= promocaoInitial.limite_usuario;
+      setCpfExcedido(excedido);
+      console.info("excedido", excedido);
+      return excedido;
+    }
+    return true;
+  }
+
+  function onAgendarOutroDia() {
+    setFormController({
+      enviando: false,
+      erro: false
+    });
+  }
 
   function onChangeFirstUnidade(unidade) {
     console.info(unidade);
@@ -98,37 +156,9 @@ function Pesquisa({
   }
 
   async function onChange({ currentTarget: { name, value } }) {
-    if(limitePorUsuario && ["cpf", "email", "celular"].indexOf(name) !== -1) {
-      setValidandoLimite(true);
-      if(timer) {
-        clearTimeout(timer);
-      }
-      setTimer(setTimeout(async function() {
-        const response = await fetch(`${process.env.API_BASE_URL}/vouchers/verificaLimitePorEmailOuCelular`, {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            campo: name == 'cpf' || name == 'email' ? name : 'telefone',
-            valor: value,
-            promocao_id: promocaoInitial.id
-          })
-        });
-        const data = await response.json();
-        if(data) {
-          const excedido = data.data >= promocaoInitial.limite_usuario;
-          if(name == 'email') {
-            setEmailExcedido(excedido);
-          } else if(name == 'cpf') {
-            setCpfExcedido(excedido);
-          } else {
-            setCelularExcedido(excedido);
-          }
-          setValidandoLimite(false);
-        }
-      }, 1500));
-    }
+    // if(limitePorUsuario && ["cpf"].indexOf(name) !== -1) { // Validação do limite de voucher por usuário pelo campo CPF
+    //   await validaLimiteUsuario();
+    // }
 
     setVoucher({
       ...voucher, [name]: value,
@@ -140,8 +170,7 @@ function Pesquisa({
     
     const validou = validacaoPesquisa(voucher);
     const validouTelefone = validaTelefone(voucher.celular);
-    
-    if (!validou || !validouTelefone || emailExcedido || celularExcedido || pesquisas.length != respostas.length) {
+    if (!validou || !validouTelefone || emailExcedido || celularExcedido || pesquisas.length != Object.keys(respostas).length) {
       setFormController({
         ...formController,
         valido: false,
@@ -152,7 +181,9 @@ function Pesquisa({
 
     if (limitePorUsuario) {
       const validouCpf = validaCpf(voucher.cpf);
-      if (!validouCpf || cpfExcedido) {
+      const limiteVoucherMesExcedido = await validaLimiteVoucherPorMes(voucher.cpf);
+
+      if (!validouCpf || cpfExcedido || limiteVoucherMesExcedido) {
         setFormController({
           ...formController,
           valido: false,
@@ -411,6 +442,7 @@ function Pesquisa({
                     erro={formController.erro}
                     estado={estado}
                     estados={estados}
+                    handleAgendarOutroDia={onAgendarOutroDia}
                     handleEstado={onChangeEstado}
                     handleInput={onChange}
                     handleSubmit={onSubmit}
