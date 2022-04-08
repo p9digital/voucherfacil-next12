@@ -48,7 +48,7 @@ const TopoStyled = styled.div`
 const FotosWrapper = styled.div`
   margin-left: -1.5rem;
   margin-right: -1.5rem;
-  min-width: 100vw;
+  min-width: 100%;
 `;
 
 const Topo = ({

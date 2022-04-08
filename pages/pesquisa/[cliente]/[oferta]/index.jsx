@@ -569,16 +569,15 @@ const ContainerPesquisa = styled(Container)`
 `;
 
 const ButtonAproveite = styled(ButtonBlock)`
-  margin: 2rem -1.5rem 0;
-  z-index: 99;
-
+  bottom: 0;
   display: none;
   justify-content: center;
-
-  position: -webkit-sticky;
-  position: sticky;
-  bottom: 0;
+  margin: 2rem -1.5rem 0;
   padding: 1.5rem 1rem;
+  position: sticky;
+  position: -webkit-sticky;
+  width:calc(100% + 3rem);
+  z-index: 99;
 
   @media(max-width: 800px){
     display: flex; 

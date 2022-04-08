@@ -9,7 +9,7 @@ const DestaqueWrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
-  height: 37vw;
+  height: 36vw;
   max-height:700px;
   cursor: pointer;
   

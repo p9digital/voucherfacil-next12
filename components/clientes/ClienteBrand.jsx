@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   padding: 1rem 2rem;
 
   margin: 0 -1.5rem;
-  width: 100vw;
+  width:calc(100% + 3rem);
 `;
 
 const LogoCliente = styled.img`

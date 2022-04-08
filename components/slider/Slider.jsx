@@ -8,7 +8,7 @@ import Destaque from './Destaque';
 import FallbackSlide from './FallbackSlide';
 
 const SliderBanner = styled(Slider)`
-  height:37vw;
+  height:36vw;
   max-height:700px;
   
   @media(max-width: 1100px) {

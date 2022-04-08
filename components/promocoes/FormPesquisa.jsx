@@ -67,7 +67,7 @@ export default function FormPesquisa({
   }
 
   return (
-    <FormWrapperStyled className="form-promocao-wrapper">
+    <FormWrapperPesquisa className="form-promocao-wrapper">
       {erro && !enviando && (
         <StatusWrapper>
           <ErroStatus color="#FFFFFF">
@@ -342,14 +342,24 @@ export default function FormPesquisa({
           </Tooltip>
         )
       }
-    </FormWrapperStyled>
+    </FormWrapperPesquisa>
   );
 }
+
+const FormWrapperPesquisa = styled(FormWrapperStyled)`
+  @media (max-width: 900px) {
+    margin: 0;
+  }
+`;
 
 const PesquisaForm = styled(Form)`
   background:none;
   max-width: 100%;
   padding:0;
+  
+  @media (max-width:420px) {
+    padding: 0;
+  }
 `;
 
 // const PesquisaTopo = styled(Topo)`
@@ -381,6 +391,10 @@ const RangeItems = styled.div`
   display:flex;
   justify-content:space-between;
   gap:1rem;
+
+  @media (max-width:460px) {
+    flex-wrap:wrap;
+  }
 `;
 
 const RangeItem = styled.label`
@@ -402,7 +416,7 @@ const RangeItem = styled.label`
     position:absolute;
   }
   &.unchecked {
-    opacity:0.5;
+    opacity:0.3;
   }
   &.checked {
     opacity:1;
@@ -428,6 +442,9 @@ const RangeItem = styled.label`
     height:45px;
     justify-content:center;
     padding:10px 30px;
+  }
+  @media (max-width:460px) {
+    width:calc(50% - 1.5rem);
   }
 `;
 
