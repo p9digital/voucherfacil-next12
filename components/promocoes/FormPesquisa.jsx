@@ -365,6 +365,9 @@ const Campo = styled.div`
   flex-direction:column;
   justify-content:space-between;
 
+  label {
+    margin:0 4px;
+  }
   &.mb-40 {
     margin-bottom:40px;
   }
