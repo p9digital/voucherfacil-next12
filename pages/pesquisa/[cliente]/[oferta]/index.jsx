@@ -23,8 +23,8 @@ import Faq from '../../../../components/promocoes/PromocaoFaq';
 import ClienteBrand from '../../../../components/clientes/ClienteBrand';
 // import MapaOferta from '../../../../components/promocoes/MapaOferta';
 import FormPesquisa from '../../../../components/promocoes/FormPesquisa';
-import OndeOferta from '../../../../components/promocoes/OndeOferta';
-import ContatoOferta from '../../../../components/promocoes/ContatoOferta';
+// import OndeOferta from '../../../../components/promocoes/OndeOferta';
+// import ContatoOferta from '../../../../components/promocoes/ContatoOferta';
 import OfertasRecomendadas from '../../../../components/promocoes/OfertasRecomendadas';
 import Icon from '../../../../components/ui/Icon';
 import { Titulo1 } from '../../../../components/ui/Tipografia';
@@ -466,9 +466,10 @@ function Pesquisa({
                 </Element>
               )
           }
+          <br />
 
           <Detalhes {...promocao} />
-          {voucher.unidade ? (
+          {/* {voucher.unidade ? (
             <OndeOferta
               cidade={unidadeEscolhida.cidade}
               uf={unidadeEscolhida.uf}
@@ -480,7 +481,7 @@ function Pesquisa({
           ) : ('')}
           {voucher.unidade && unidadeEscolhida.contato ? (
             <ContatoOferta telefone={unidadeEscolhida.contato} />
-          ) : ('')}
+          ) : ('')} */}
           
           {!((moment().format('YYYY-MM-DD HH:mm:SS') > promocaoInitial.dataFim)) ? (
             <CallFormCenter onClick={() => scrollToForm()}>Quero meu voucher</CallFormCenter>

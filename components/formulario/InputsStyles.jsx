@@ -76,7 +76,7 @@ export const SelectStyledPesquisa = styled.select`
   border-bottom: ${(props) => (props.valido ? '1px solid #333333' : '1px solid #E86262')};
   border-radius:0;
   flex: ${(props) => (!props.medium && !props.tiny ? 1 : 'none')}; 
-  font-size: 16px;
+  font-size: 14px;
   margin: 0.5rem 0;
   min-height: 4rem;
   outline: none;

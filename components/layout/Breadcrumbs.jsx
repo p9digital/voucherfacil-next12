@@ -38,7 +38,6 @@ const Item = styled.li`
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      width: 200px;
     }
   }
 `;
