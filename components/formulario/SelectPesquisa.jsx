@@ -74,11 +74,8 @@ export default function SelectPesquisa({
                 ))}
               </>
             )}
-
           </SelectStyledPesquisa>
-          <ArrowSelect color="#fff" />
         </SelectWrapper>
-
       ) : (
         <SelectWrapper>
           <IconPesquisa
@@ -104,23 +101,22 @@ export default function SelectPesquisa({
               <option value={item} key={`${item}-${i}`}>{item}</option>
             ))}
           </SelectStyledPesquisa>
-          <ArrowSelect color="#fff" />
         </SelectWrapper>
       )}
     </>
   );
 }
 
-const ArrowSelect = styled.div`
-  width: 0; 
-  height: 0; 
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  position: absolute;
-  border-top: 6px solid ${(props) => props.color};
-  right: 20px;
-  top: 45%;
-`;
+// const ArrowSelect = styled.div`
+//   width: 0; 
+//   height: 0; 
+//   border-left: 6px solid transparent;
+//   border-right: 6px solid transparent;
+//   position: absolute;
+//   border-top: 6px solid ${(props) => props.color};
+//   right: 20px;
+//   top: 45%;
+// `;
 
 const SelectWrapper = styled.div`
   position: relative;
