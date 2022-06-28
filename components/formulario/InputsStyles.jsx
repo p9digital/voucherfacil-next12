@@ -76,12 +76,16 @@ export const SelectStyledPesquisa = styled.select`
   border-bottom: ${(props) => (props.valido ? '1px solid #333333' : '1px solid #E86262')};
   border-radius:0;
   flex: ${(props) => (!props.medium && !props.tiny ? 1 : 'none')}; 
-  font-size: 14px;
+  font-size: 16px;
   margin: 0.5rem 0;
   min-height: 4rem;
   outline: none;
   padding: ${(props) => (props.icone ? '10px 15px 10px 30px' : '10px 0')};
   width: 100%;
+
+  @media (max-width:600px) {
+    font-size: 14px;
+  }
 `;
 
 export const InputEscuro = styled(InputStyled)`
