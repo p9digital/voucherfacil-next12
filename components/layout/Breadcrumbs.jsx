@@ -17,6 +17,7 @@ const BreadcrumbsStyled = styled.div`
 const Caminho = styled.ol`
   display: flex;
   align-items: center;
+  max-width: 100%;
 `;
 
 const Item = styled.li`
@@ -38,6 +39,7 @@ const Item = styled.li`
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+      width: 200px;
     }
   }
 `;
