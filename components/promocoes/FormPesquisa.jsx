@@ -294,7 +294,7 @@ export default function FormPesquisa({
                       <SelectPesquisa
                         name={`${pergunta.id}`}
                         label={pergunta.pergunta}
-                        placeholder="Selecione uma opção"
+                        placeholder="Selecione uma resposta"
                         handleChange={setRespostas}
                         value={respostas[pergunta.id - 1] ? respostas[pergunta.id - 1] : ""}
                         type="text"
