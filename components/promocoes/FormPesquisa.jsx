@@ -290,10 +290,11 @@ export default function FormPesquisa({
                 } else if (pergunta.tipo == "select") {
                   campo = (
                     <Campo key={pergunta.id} className={pergunta.classes}>
+                      <label>{pergunta.pergunta}</label>
                       <SelectPesquisa
                         name={`${pergunta.id}`}
                         label={pergunta.pergunta}
-                        placeholder={pergunta.pergunta}
+                        placeholder="Selecione uma opção"
                         handleChange={setRespostas}
                         value={respostas[pergunta.id - 1] ? respostas[pergunta.id - 1] : ""}
                         type="text"
