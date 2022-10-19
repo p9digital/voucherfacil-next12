@@ -25,6 +25,7 @@ import { DatePickerWrapper } from '../formulario/DatePickerInput';
 import { validaCpf, validaTelefone } from '../../helpers/formulario';
 
 import 'react-dates/initialize';
+import 'moment/locale/pt-br';
 
 // const InformacaoVouchers = styled.div`
 //   display: flex;
